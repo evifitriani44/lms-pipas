@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJEK IPAS – ZAT, PERUBAHAN ZAT, ENERGI DAN PERUBAHANNYA</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        },
+                        accent: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-white">
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo & Brand Title -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="showPage('beranda')">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-600 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+                        <i class="fa-solid font-bold text-xl fa-atom"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-slate-800 text-sm sm:text-base leading-tight">PROJEK IPAS SMK</h1>
+                        <p class="text-xs text-brand-600 font-medium">SMKN 1 Kalipucang • Kelas X</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-medium">
+                    <button onclick="showPage('beranda')" id="nav-beranda" class="nav-btn px-3 py-2 rounded-lg transition hover:bg-slate-100 text-slate-700">
+                        <i class="fa-solid fa-house mr-1.5 text-brand-600"></i>Beranda
+                    </button>
+                    <button onclick="showPage('materi')" id="nav-materi" class="nav-btn px-3 py-2 rounded-lg transition hover:bg-slate-100 text-slate-700">
+                        <i class="fa-solid fa-book-open mr-1.5 text-brand-600"></i>Materi
+                    </button>
+                    <button onclick="showPage('aktivitas')" id="nav-aktivitas" class="nav-btn px-3 py-2 rounded-lg transition hover:bg-slate-100 text-slate-700">
+                        <i class="fa-solid fa-puzzle-piece mr-1.5 text-brand-600"></i>Aktivitas
+                    </button>
+                    <button onclick="showPage('kuis')" id="nav-kuis" class="nav-btn px-3 py-2 rounded-lg transition hover:bg-slate-100 text-slate-700">
+                        <i class="fa-solid fa-list-check mr-1.5 text-brand-600"></i>Kuis
+                    </button>
+                    <button onclick="showPage('evaluasi')" id="nav-evaluasi" class="nav-btn px-3 py-2 rounded-lg transition hover:bg-slate-100 text-slate-700">
+                        <i class="fa-solid fa-file-pen mr-1.5 text-brand-600"></i>Evaluasi
+                    </button>
+                    <button onclick="showPage('tantangan')" id="nav-tantangan" class="nav-btn px-3 py-2 rounded-lg transition hover:bg-slate-100 text-slate-700">
+                        <i class="fa-solid fa-stopwatch mr-1.5 text-amber-500"></i>Tantangan
+                    </button>
+                    <button onclick="showPage('galeri')" id="nav-galeri" class="nav-btn px-3 py-2 rounded-lg transition hover:bg-slate-100 text-slate-700">
+                        <i class="fa-solid fa-images mr-1.5 text-brand-600"></i>Galeri
+                    </button>
+                    <button onclick="showPage('refleksi')" id="nav-refleksi" class="nav-btn px-3 py-2 rounded-lg transition hover:bg-slate-100 text-slate-700">
+                        <i class="fa-solid fa-heart mr-1.5 text-rose-500"></i>Refleksi
+                    </button>
+                    <button onclick="showPage('guru')" id="nav-guru" class="nav-btn px-3 py-2 rounded-lg transition hover:bg-slate-100 text-slate-700">
+                        <i class="fa-solid fa-user-tie mr-1.5 text-accent-600"></i>Guru
+                    </button>
+                </nav>
+
+                <!-- Progress Pill & Mobile Menu Button -->
+                <div class="flex items-center space-x-3">
+                    <div class="hidden sm:flex items-center space-x-2 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200 text-xs">
+                        <span class="text-slate-500 font-medium">Progres:</span>
+                        <div class="w-16 bg-slate-200 rounded-full h-2 overflow-hidden">
+                            <div id="header-progress-bar" class="bg-brand-600 h-full w-0 transition-all duration-500"></div>
+                        </div>
+                        <span id="header-progress-text" class="font-bold text-brand-700">0%</span>
+                    </div>
+
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-1 shadow-lg">
+            <button onclick="showPage('beranda'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 font-medium flex items-center">
+                <i class="fa-solid fa-house w-6 text-brand-600"></i>Beranda
+            </button>
+            <button onclick="showPage('materi'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 font-medium flex items-center">
+                <i class="fa-solid fa-book-open w-6 text-brand-600"></i>Materi Pembelajaran
+            </button>
+            <button onclick="showPage('aktivitas'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 font-medium flex items-center">
+                <i class="fa-solid fa-puzzle-piece w-6 text-brand-600"></i>Aktivitas Interaktif
+            </button>
+            <button onclick="showPage('kuis'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 font-medium flex items-center">
+                <i class="fa-solid fa-list-check w-6 text-brand-600"></i>Kuis Modul
+            </button>
+            <button onclick="showPage('evaluasi'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 font-medium flex items-center">
+                <i class="fa-solid fa-file-pen w-6 text-brand-600"></i>Evaluasi Akhir
+            </button>
+            <button onclick="showPage('tantangan'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 font-medium flex items-center">
+                <i class="fa-solid fa-stopwatch w-6 text-amber-500"></i>Tantangan 5 Menit
+            </button>
+            <button onclick="showPage('galeri'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 font-medium flex items-center">
+                <i class="fa-solid fa-images w-6 text-brand-600"></i>Galeri Ilustrasi
+            </button>
+            <button onclick="showPage('refleksi'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 font-medium flex items-center">
+                <i class="fa-solid fa-heart w-6 text-rose-500"></i>Refleksi Pembelajaran
+            </button>
+            <button onclick="showPage('guru'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 font-medium flex items-center">
+                <i class="fa-solid fa-user-tie w-6 text-accent-600"></i>Panduan Guru
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINERS -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+
+        <!-- PAGE 1: BERANDA -->
+        <section id="page-beranda" class="page-content space-y-8">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-brand-800 via-brand-700 to-accent-800 text-white p-6 sm:p-10 shadow-xl">
+                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="relative z-10 max-w-3xl space-y-4">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-xs font-semibold backdrop-blur-md text-brand-100 border border-white/20">
+                        <i class="fa-solid fa-graduation-cap"></i> Media Pembelajaran Interaktif Projek IPAS
+                    </span>
+                    <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+                        PROJEK IPAS – ZAT, PERUBAHAN ZAT, ENERGI DAN PERUBAHANNYA
+                    </h1>
+                    <p class="text-brand-100 text-sm sm:text-base leading-relaxed">
+                        “Memahami Zat, Perubahannya, Energi, dan Penerapannya dalam Kehidupan Sehari-hari serta Bidang Keahlian DPIB & Kuliner.”
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <button onclick="showPage('materi')" class="px-5 py-2.5 rounded-xl bg-white text-brand-800 font-bold hover:bg-brand-50 transition shadow-md flex items-center gap-2">
+                            <i class="fa-solid fa-play"></i> Mulai Belajar
+                        </button>
+                        <button onclick="showPage('aktivitas')" class="px-5 py-2.5 rounded-xl bg-brand-600/60 hover:bg-brand-600 text-white font-medium backdrop-blur-md transition border border-white/20 flex items-center gap-2">
+                            <i class="fa-solid fa-gamepad"></i> Aktivitas Interaktif
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Identity Badge -->
+                <div class="mt-6 pt-6 border-t border-white/15 flex flex-wrap justify-between items-center text-xs text-brand-100 gap-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-user-pen"></i>
+                        <span class="font-semibold text-white">Dibuat oleh Evi Fitriani – SMKN 1 Kalipucang</span>
+                    </div>
+                    <div class="flex space-x-4">
+                        <span>Fase / Kelas: E / X</span>
+                        <span>Mata Pelajaran: Projek IPAS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App Description & Keahlian Highlights -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-2 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-3">
+                    <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-info text-brand-600"></i> Tentang Media Pembelajaran Ini
+                    </h2>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Media pembelajaran interaktif ini dirancang khusus untuk membantu peserta didik SMK Kelas X memahami konsep dasar sains zat, fenomena perubahan fisika-kimia-biologi, serta transformasi energi secara konseptual dan praktis.
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-center">
+                            <i class="fa-solid fa-microscope text-brand-600 text-lg mb-1"></i>
+                            <p class="text-xs font-semibold text-slate-700">13 Pertemuan</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-center">
+                            <i class="fa-solid fa-flask-vial text-accent-600 text-lg mb-1"></i>
+                            <p class="text-xs font-semibold text-slate-700">LKPD Digital</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-center">
+                            <i class="fa-solid fa-puzzle-piece text-amber-500 text-lg mb-1"></i>
+                            <p class="text-xs font-semibold text-slate-700">Game & Simulasi</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-center">
+                            <i class="fa-solid fa-chart-line text-emerald-600 text-lg mb-1"></i>
+                            <p class="text-xs font-semibold text-slate-700">Skor Otomatis</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Integration with DPIB & Kuliner -->
+                <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-2xl p-6 shadow-sm space-y-3">
+                    <h3 class="font-bold text-base text-amber-400 flex items-center gap-2">
+                        <i class="fa-solid fa-briefcase"></i> Kaitan Bidang Keahlian
+                    </h3>
+                    <div class="space-y-3 text-xs text-slate-300">
+                        <div class="p-2.5 rounded-lg bg-white/5 border border-white/10">
+                            <p class="font-bold text-white mb-1"><i class="fa-solid fa-compass-drafting text-sky-400 mr-1"></i> DPIB (Desain Pemodelan & Informasi Bangunan)</p>
+                            <p>Struktur zat beton, reaksi mengerasnya semen, sifat fisika baja, efisiensi energi bangunan & sistem termal pencahayaan.</p>
+                        </div>
+                        <div class="p-2.5 rounded-lg bg-white/5 border border-white/10">
+                            <p class="font-bold text-white mb-1"><i class="fa-solid fa-utensils text-amber-400 mr-1"></i> Kuliner / Tata Boga</p>
+                            <p>Perubahan zat pada fermentasi adonan, pemanasan bahan makanan, energi panas kompor/oven, senyawa rasa & larutan bumbu.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fast Menu Navigation Cards -->
+            <div class="space-y-4">
+                <h2 class="text-xl font-bold text-slate-800">Modul Pembelajaran Utama</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Modul 1 Card -->
+                    <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between space-y-4 group">
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center">
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-brand-100 text-brand-700">MODUL 1</span>
+                                <span class="text-xs font-medium text-slate-500"><i class="fa-solid fa-clock mr-1"></i> 6 Pertemuan</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-brand-600 transition">ZAT DAN PERUBAHANNYA</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Mempelajari jenis, sifat, karakteristik zat, wujud zat, unsur, senyawa, campuran, serta penyelidikan perubahan fisika, kimia, dan biologi.
+                            </p>
+                        </div>
+                        <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-xs text-slate-500 font-medium">6 Aktivitas Praktik</span>
+                            <button onclick="showMateriModul(1)" class="text-sm font-bold text-brand-600 hover:text-brand-700 flex items-center gap-1">
+                                Buka Modul 1 <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Modul 2 Card -->
+                    <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between space-y-4 group">
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center">
+                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700">MODUL 2</span>
+                                <span class="text-xs font-medium text-slate-500"><i class="fa-solid fa-clock mr-1"></i> 7 Pertemuan</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 group-hover:text-amber-600 transition">ENERGI DAN PERUBAHANNYA</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Mempelajari besaran, satuan, pengukuran, bentuk-bentuk energi, transformasi energi mekanik, kimia, listrik, panas, serta energi terbarukan.
+                            </p>
+                        </div>
+                        <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-xs text-slate-500 font-medium">7 Aktivitas Praktik</span>
+                            <button onclick="showMateriModul(2)" class="text-sm font-bold text-amber-600 hover:text-amber-700 flex items-center gap-1">
+                                Buka Modul 2 <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Access Grid -->
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+                <h3 class="text-lg font-bold text-slate-800">Akses Cepat Fitur Interaktif</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+                    <button onclick="showPage('aktivitas')" class="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 transition text-center space-y-2 group">
+                        <div class="w-10 h-10 mx-auto rounded-lg bg-brand-100 text-brand-600 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                            <i class="fa-solid fa-gamepad"></i>
+                        </div>
+                        <p class="text-xs font-bold text-slate-700">Aktivitas Interaktif</p>
+                    </button>
+                    <button onclick="showPage('kuis')" class="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 transition text-center space-y-2 group">
+                        <div class="w-10 h-10 mx-auto rounded-lg bg-accent-100 text-accent-600 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+                        <p class="text-xs font-bold text-slate-700">Kuis Latihan</p>
+                    </button>
+                    <button onclick="showPage('evaluasi')" class="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 transition text-center space-y-2 group">
+                        <div class="w-10 h-10 mx-auto rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                            <i class="fa-solid fa-file-pen"></i>
+                        </div>
+                        <p class="text-xs font-bold text-slate-700">Evaluasi Akhir</p>
+                    </button>
+                    <button onclick="showPage('tantangan')" class="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 transition text-center space-y-2 group">
+                        <div class="w-10 h-10 mx-auto rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                            <i class="fa-solid fa-stopwatch"></i>
+                        </div>
+                        <p class="text-xs font-bold text-slate-700">Tantangan 5 Menit</p>
+                    </button>
+                    <button onclick="showPage('galeri')" class="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 transition text-center space-y-2 group">
+                        <div class="w-10 h-10 mx-auto rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                            <i class="fa-solid fa-images"></i>
+                        </div>
+                        <p class="text-xs font-bold text-slate-700">Galeri Gambar</p>
+                    </button>
+                    <button onclick="showPage('refleksi')" class="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 transition text-center space-y-2 group">
+                        <div class="w-10 h-10 mx-auto rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center text-lg group-hover:scale-110 transition">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <p class="text-xs font-bold text-slate-700">Refleksi Belajar</p>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: MATERI -->
+        <section id="page-materi" class="page-content hidden space-y-6">
+            <!-- Header section with Modul Tabs -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800">Materi Pembelajaran IPAS</h2>
+                    <p class="text-xs sm:text-sm text-slate-500">Pilih modul dan pertemuan untuk mempelajari materi, contoh fenomena, dan kaitannya dengan kejuruan.</p>
+                </div>
+                <div class="flex p-1 bg-slate-100 rounded-xl">
+                    <button id="btn-tab-m1" onclick="switchMateriTab(1)" class="px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition bg-white text-brand-700 shadow-sm">
+                        Modul 1: Zat & Perubahannya
+                    </button>
+                    <button id="btn-tab-m2" onclick="switchMateriTab(2)" class="px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition text-slate-600 hover:text-slate-900">
+                        Modul 2: Energi & Perubahannya
+                    </button>
+                </div>
+            </div>
+
+            <!-- MODUL 1 CONTENT LIST (6 PERTEMUAN) -->
+            <div id="materi-modul-1" class="space-y-6">
+                <!-- Pertemuan 1 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap justify-between items-center gap-2 pb-3 border-b border-slate-100">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-brand-100 text-brand-700">PERTEMUAN 1</span>
+                        <span class="text-xs text-slate-500 font-medium">Elemen CP 1: Menjelaskan Fenomena secara Ilmiah</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Jenis, Sifat, dan Karakteristik Zat</h3>
+                    
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700">
+                        <p class="font-bold text-brand-800 mb-1"><i class="fa-solid fa-bullseye mr-1"></i> Tujuan Pembelajaran:</p>
+                        <p>Peserta didik mampu mengidentifikasi jenis, sifat, dan karakteristik zat serta menjelaskan perbedaan sifat fisika dan sifat kimia berdasarkan fenomena yang ditemukan dalam kehidupan sehari-hari.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600">
+                        <div class="space-y-2">
+                            <h4 class="font-bold text-slate-800 text-sm flex items-center gap-1.5"><i class="fa-solid fa-cube text-brand-600"></i> Wujud & Klasifikasi Zat</h4>
+                            <p><strong>Zat</strong> adalah sesuatu yang memiliki massa dan menempati ruang. Berdasarkan wujudnya dibagi menjadi 3:</p>
+                            <ul class="list-disc list-inside space-y-1 text-xs">
+                                <li><strong>Padat:</strong> Bentuk & volume tetap, partikel sangat rapat. (Besi, kayu, beton)</li>
+                                <li><strong>Cair:</strong> Bentuk mengikuti wadah, volume tetap. (Air, minyak, cat)</li>
+                                <li><strong>Gas:</strong> Bentuk & volume berubah mengisi ruang. (Uap air, udara, LPG)</li>
+                            </ul>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-bold text-slate-800 text-sm flex items-center gap-1.5"><i class="fa-solid fa-vial text-brand-600"></i> Sifat Fisika vs Sifat Kimia</h4>
+                            <ul class="list-disc list-inside space-y-1 text-xs">
+                                <li><strong>Sifat Fisika:</strong> Dapat diamati tanpa mengubah identitas zat. (Warna, titik didih, kelarutan, kerapatan, daya antar listrik).</li>
+                                <li><strong>Sifat Kimia:</strong> Terlihat saat zat mengalami perubahan kimia menjadi zat baru. (Mudah terbakar, mudah berkarat, korosif, tingkat keasaman).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex justify-between items-center">
+                        <span class="text-xs text-slate-500"><i class="fa-solid fa-image text-brand-600 mr-1"></i> Ilustrasi: Es batu, air, garam, besi berkarat, bahan bangunan.</span>
+                        <button onclick="openActivity('kenali_zat')" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-gamepad"></i> Coba Aktivitas "Kenali Zatnya!"
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap justify-between items-center gap-2 pb-3 border-b border-slate-100">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-brand-100 text-brand-700">PERTEMUAN 2</span>
+                        <span class="text-xs text-slate-500 font-medium">Elemen CP 1 & Elemen CP 2</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Perubahan Fisika, Kimia, dan Biologi</h3>
+                    
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700">
+                        <p class="font-bold text-brand-800 mb-1"><i class="fa-solid fa-bullseye mr-1"></i> Tujuan Pembelajaran:</p>
+                        <p>Peserta didik mampu memprediksi perubahan sifat suatu zat berdasarkan fenomena perubahan fisika, kimia, dan biologi serta menyusun rancangan penyelidikan ilmiah.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-600">
+                        <div class="p-3 bg-sky-50/50 rounded-xl border border-sky-100">
+                            <h4 class="font-bold text-sky-800 text-sm mb-1">Perubahan Fisika</h4>
+                            <p>Perubahan yang tidak menghasilkan zat baru. Sifat kimia zat tetap sama.</p>
+                            <p class="mt-2 font-semibold text-sky-900">Contoh: Es mencair, air mendidih, kayu dipotong, gula larut.</p>
+                        </div>
+                        <div class="p-3 bg-amber-50/50 rounded-xl border border-amber-100">
+                            <h4 class="font-bold text-amber-800 text-sm mb-1">Perubahan Kimia</h4>
+                            <p>Perubahan yang menghasilkan zat baru dengan sifat berbeda. Ciri: terbentuk endapan, gas, perubahan warna, perubahan suhu.</p>
+                            <p class="mt-2 font-semibold text-amber-900">Contoh: Kertas dibakar, besi berkarat, telur dimasak.</p>
+                        </div>
+                        <div class="p-3 bg-emerald-50/50 rounded-xl border border-emerald-100">
+                            <h4 class="font-bold text-emerald-800 text-sm mb-1">Perubahan Biologi</h4>
+                            <p>Perubahan zat yang dipengaruhi atau melibatkan mikroorganisme atau organisme hidup.</p>
+                            <p class="mt-2 font-semibold text-emerald-900">Contoh: Buah membusuk, adonan roti mengembang (fermentasi yeast).</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex justify-between items-center">
+                        <span class="text-xs text-slate-500"><i class="fa-solid fa-pen-to-square text-brand-600 mr-1"></i> LKPD Digital Tersedia</span>
+                        <button onclick="openActivity('prediksi_perubahan')" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-flask"></i> Buka LKPD Digital & Prediksi
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 3 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap justify-between items-center gap-2 pb-3 border-b border-slate-100">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-brand-100 text-brand-700">PERTEMUAN 3</span>
+                        <span class="text-xs text-slate-500 font-medium">Elemen CP 2: Menyusun Penyelidikan Ilmiah</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Melaksanakan Penyelidikan Ilmiah</h3>
+                    
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700">
+                        <p class="font-bold text-brand-800 mb-1"><i class="fa-solid fa-bullseye mr-1"></i> Tujuan Pembelajaran:</p>
+                        <p>Peserta didik mampu melaksanakan penyelidikan ilmiah untuk mengamati perubahan zat sesuai prosedur serta memeriksa kekurangan/kesalahan dalam rancangan penyelidikan.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                            <p class="font-bold text-slate-800 mb-1">Langkah Penyelidikan Ilmiah:</p>
+                            <ol class="list-decimal list-inside space-y-1 text-slate-600">
+                                <li>Merumuskan Masalah</li>
+                                <li>Menyusun Hipotesis/Prediksi</li>
+                                <li>Menentukan Variabel (Bebas, Terikat, Kontrol)</li>
+                                <li>Menyiapkan Alat, Bahan, & Keselamatan Kerja</li>
+                                <li>Mengumpulkan & Mencatat Data Pengamatan</li>
+                                <li>Menarik Kesimpulan ilmiah</li>
+                            </ol>
+                        </div>
+                        <div class="p-3 rounded-xl bg-rose-50/50 border border-rose-200 text-slate-700">
+                            <p class="font-bold text-rose-800 mb-1"><i class="fa-solid fa-triangle-exclamation"></i> Kesalahan Umum Eksperimen:</p>
+                            <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                <li>Variabel kontrol tidak dijaga tetap seragam.</li>
+                                <li>Tidak mencatat data pengamatan secara tepat waktu.</li>
+                                <li>Alat ukur tidak dikalibrasi.</li>
+                                <li>Abaikan APD/Keselamatan kerja laboratorium.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex justify-end">
+                        <button onclick="openActivity('detektif_sains')" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-user-ninja"></i> Simulasi "Detektif Sains"
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 4 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap justify-between items-center gap-2 pb-3 border-b border-slate-100">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-brand-100 text-brand-700">PERTEMUAN 4</span>
+                        <span class="text-xs text-slate-500 font-medium">Elemen CP 3: Merefleksikan Data & Bukti Ilmiah</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Menganalisis Data Perubahan Zat</h3>
+                    
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700">
+                        <p class="font-bold text-brand-800 mb-1"><i class="fa-solid fa-bullseye mr-1"></i> Tujuan Pembelajaran:</p>
+                        <p>Peserta didik mampu menganalisis data hasil penyelidikan mengenai sifat dan perubahan zat untuk membuktikan perbedaan perubahan fisika, kimia, dan biologi.</p>
+                    </div>
+
+                    <p class="text-xs text-slate-600">
+                        Penyajian data hasil pengamatan sains dapat berbentuk tabel kuantitatif/kualitatif dan grafik. Data yang konsisten menjadi bukti kuat untuk mendukung kesimpulan ilmiah.
+                    </p>
+
+                    <div class="pt-2 flex justify-end">
+                        <button onclick="openActivity('baca_data')" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-chart-pie"></i> Aktivitas "Baca Datanya!"
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 5 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap justify-between items-center gap-2 pb-3 border-b border-slate-100">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-brand-100 text-brand-700">PERTEMUAN 5</span>
+                        <span class="text-xs text-slate-500 font-medium">Elemen CP 1 & Elemen CP 3</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Unsur, Senyawa, dan Campuran</h3>
+                    
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700">
+                        <p class="font-bold text-brand-800 mb-1"><i class="fa-solid fa-bullseye mr-1"></i> Tujuan Pembelajaran:</p>
+                        <p>Peserta didik mampu menginterpretasikan konsep unsur, senyawa, campuran homogen, dan heterogen serta mengaitkannya dengan penerapannya dalam bidang keahlian DPIB & Kuliner.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                        <div class="p-3 bg-purple-50/50 rounded-xl border border-purple-100">
+                            <h4 class="font-bold text-purple-900 mb-1">Unsur</h4>
+                            <p class="text-slate-600">Zat tunggal paling sederhana yang tidak dapat diuraikan lagi secara kimia biasa.</p>
+                            <p class="mt-2 font-semibold text-purple-800">Contoh: Oksigen (O), Besi (Fe), Emas (Au), Tembaga (Cu).</p>
+                        </div>
+                        <div class="p-3 bg-indigo-50/50 rounded-xl border border-indigo-100">
+                            <h4 class="font-bold text-indigo-900 mb-1">Senyawa</h4>
+                            <p class="text-slate-600">Zat tunggal gabungan dari dua atau lebih unsur berbeda dengan perbandingan tetap melalui Reaksi Kimia.</p>
+                            <p class="mt-2 font-semibold text-indigo-800">Contoh: Air (H2O), Garam (NaCl), Gula (C12H22O11).</p>
+                        </div>
+                        <div class="p-3 bg-teal-50/50 rounded-xl border border-teal-100">
+                            <h4 class="font-bold text-teal-900 mb-1">Campuran</h4>
+                            <p class="text-slate-600">Gabungan dua zat atau lebih tanpa reaksi kimia. Sifat asal zat penyusun tetap ada.</p>
+                            <p class="mt-1 font-semibold text-teal-800">Homogen: Udara, Air garam, Perunggu.</p>
+                            <p class="font-semibold text-teal-800">Heterogen: Beton, Kopi tubruk, Air & Minyak.</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex justify-between items-center">
+                        <span class="text-xs font-semibold text-amber-700"><i class="fa-solid fa-hard-hat mr-1"></i> Terintegrasi DPIB (Beton, Semen, Baja) & Kuliner (Bumbu, Adonan)</span>
+                        <button onclick="openActivity('klasifikasi_zat')" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-layer-group"></i> Permainan Klasifikasi Zat
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 6 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap justify-between items-center gap-2 pb-3 border-b border-slate-100">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-brand-100 text-brand-700">PERTEMUAN 6</span>
+                        <span class="text-xs text-slate-500 font-medium">Elemen CP 3: Mengomunikasikan & Merefleksikan</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Mengomunikasikan dan Merefleksikan Hasil</h3>
+                    
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700">
+                        <p class="font-bold text-brand-800 mb-1"><i class="fa-solid fa-bullseye mr-1"></i> Tujuan Pembelajaran:</p>
+                        <p>Peserta didik mampu mengomunikasikan hasil penyelidikan mengenai zat dan perubahannya serta merefleksikan proses pembelajaran yang dikaitkan dengan bidang keahlian.</p>
+                    </div>
+
+                    <div class="pt-2 flex justify-end">
+                        <button onclick="openActivity('presentasi_mini')" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-file-powerpoint"></i> Buat "Presentasi Mini Digital"
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODUL 2 CONTENT LIST (7 PERTEMUAN) -->
+            <div id="materi-modul-2" class="space-y-6 hidden">
+                <!-- Pertemuan 1 Modul 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap justify-between items-center gap-2 pb-3 border-b border-slate-100">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700">PERTEMUAN 1 (MODUL 2)</span>
+                        <span class="text-xs text-slate-500 font-medium">Elemen CP 1: Menjelaskan Fenomena secara Ilmiah</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Besaran, Satuan, Alat Ukur, dan Energi</h3>
+                    
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700">
+                        <p class="font-bold text-amber-800 mb-1"><i class="fa-solid fa-bullseye mr-1"></i> Tujuan Pembelajaran:</p>
+                        <p>Peserta didik mampu mengidentifikasi besaran pokok, besaran turunan, satuan, alat ukur serta menjelaskan konsep energi dan berbagai bentuk energi.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-600">
+                        <div class="space-y-2">
+                            <h4 class="font-bold text-slate-800 text-sm">Besaran & Alat Ukur</h4>
+                            <p>Besaran Pokok: Panjang (Penggaris/Meteran), Massa (Neraca), Waktu (Stopwatch), Suhu (Termometer), Arus Listrik (Multimeter).</p>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-bold text-slate-800 text-sm">Bentuk-Bentuk Energi</h4>
+                            <p>Energi Panas (Kalor), Energi Cahaya, Energi Listrik, Energi Kimia (makanan & bahan bakar), Energi Gerak (Kinetik), Energi Bunyi.</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex justify-end">
+                        <button onclick="openActivity('pasangkan_alat')" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-link"></i> Game "Pasangkan Alat Ukur"
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 2 Modul 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap justify-between items-center gap-2 pb-3 border-b border-slate-100">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700">PERTEMUAN 2 (MODUL 2)</span>
+                        <span class="text-xs text-slate-500 font-medium">Elemen CP 1 & 2</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Perubahan Bentuk Energi</h3>
+                    
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs text-slate-700">
+                        <p class="font-bold text-amber-800 mb-1"><i class="fa-solid fa-bullseye mr-1"></i> Tujuan Pembelajaran:</p>
+                        <p>Peserta didik mampu memprediksi perubahan bentuk energi pada berbagai fenomena lingkungan sekitar berdasarkan Hukum Kekekalan Energi.</p>
+                    </div>
+
+                    <p class="text-xs text-slate-600">
+                        <strong>Hukum Kekekalan Energi:</strong> Energi tidak dapat diciptakan atau dimusnahkan, tetapi hanya dapat diubah dari satu bentuk ke bentuk energi lainnya (Transformasi Energi).
+                    </p>
+
+                    <div class="pt-2 flex justify-end">
+                        <button onclick="openActivity('tebak_energi')" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-bolt"></i> Game "Tebak Perubahan Energi"
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 3 Modul 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap justify-between items-center gap-2 pb-3 border-b border-slate-100">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700">PERTEMUAN 3 (MODUL 2)</span>
+                        <span class="text-xs text-slate-500 font-medium">Elemen CP 2: Menyusun Penyelidikan Ilmiah</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Penyelidikan Perubahan Energi</h3>
+                    <p class="text-xs text-slate-600">
+                        Melaksanakan penyelidikan ilmiah perubahan energi (misal: Listrik menjadi panas pada heater/kompor listrik) dan memeriksa kesalahan eksperimen.
+                    </p>
+                    <div class="pt-2 flex justify-end">
+                        <button onclick="openActivity('penyelidikan_energi')" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-sliders"></i> Simulasi Penyelidikan Energi
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 4 Modul 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap justify-between items-center gap-2 pb-3 border-b border-slate-100">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700">PERTEMUAN 4 (MODUL 2)</span>
+                        <span class="text-xs text-slate-500 font-medium">Elemen CP 3</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Menganalisis Data Perubahan Energi</h3>
+                    <p class="text-xs text-slate-600">
+                        Membaca dan menganalisis grafik pemanasan air, penggunaan daya listrik peralatan bengkel/dapur terhadap waktu.
+                    </p>
+                    <div class="pt-2 flex justify-end">
+                        <button onclick="openActivity('analisis_grafik_energi')" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-chart-line"></i> Analisis Grafik Energi
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 5 Modul 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap justify-between items-center gap-2 pb-3 border-b border-slate-100">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700">PERTEMUAN 5 (MODUL 2)</span>
+                        <span class="text-xs text-slate-500 font-medium">Elemen CP 1 & 3</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Energi Kimia, Listrik, Panas, dan Mekanik pada Bidang Keahlian</h3>
+                    <p class="text-xs text-slate-600">
+                        Penerapan energi pada peralatan konstruksi bangunan (DPIB: bor, mixer beton, panel surya) dan peralatan dapur profesional (Kuliner: oven, blender, kompor induksi).
+                    </p>
+                    <div class="pt-2 flex justify-end">
+                        <button onclick="openActivity('dari_mana_energinya')" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-plug"></i> Game "Dari Mana Energinya?"
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 6 Modul 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap justify-between items-center gap-2 pb-3 border-b border-slate-100">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700">PERTEMUAN 6 (MODUL 2)</span>
+                        <span class="text-xs text-slate-500 font-medium">Elemen CP 3</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Energi Terbarukan</h3>
+                    <p class="text-xs text-slate-600">
+                        Panel surya, turbin angin, PLTA, biomassa, dan geothermal sebagai solusi krisis energi dan ramah lingkungan.
+                    </p>
+                    <div class="pt-2 flex justify-end">
+                        <button onclick="openActivity('solusi_energi')" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-solar-panel"></i> Studi Kasus "Pilih Solusi Energi"
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pertemuan 7 Modul 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap justify-between items-center gap-2 pb-3 border-b border-slate-100">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700">PERTEMUAN 7 (MODUL 2)</span>
+                        <span class="text-xs text-slate-500 font-medium">Elemen CP 3: Refleksi Keahlian</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">Refleksi Energi dan Penerapannya pada Keahlian</h3>
+                    <p class="text-xs text-slate-600">
+                        Mengidentifikasi penggunaan energi dan strategi penghematan energi di rumah, dapur, atau bengkel sekolah.
+                    </p>
+                    <div class="pt-2 flex justify-end">
+                        <button onclick="openActivity('energi_sekitarku')" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-house-lightbulb"></i> Aktivitas "Energi di Sekitarku"
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: AKTIVITAS INTERAKTIF HUB -->
+        <section id="page-aktivitas" class="page-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800">Aktivitas & Game Pembelajaran Interaktif</h2>
+                    <p class="text-xs sm:text-sm text-slate-500">Uji pemahaman konsep melalui simulasi, permainan klasifikasi, digital LKPD, dan studi kasus.</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-bold"><i class="fa-solid fa-star mr-1"></i> Mode Latihan</span>
+                </div>
+            </div>
+
+            <!-- DYNAMIC INTERACTIVE CONTAINER -->
+            <div id="activity-container" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm min-h-[400px]">
+                <!-- Activity selection screen default -->
+                <div id="act-select-screen" class="space-y-6">
+                    <h3 class="text-lg font-bold text-slate-800">Pilih Aktivitas yang Ingin Dimainkan:</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Activity Card 1 -->
+                        <div onclick="startKenaliZat()" class="p-5 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:bg-brand-50/40 transition cursor-pointer space-y-2 group">
+                            <div class="flex justify-between items-center">
+                                <span class="px-2.5 py-0.5 rounded bg-brand-100 text-brand-700 text-xs font-bold">Modul 1 • P1</span>
+                                <i class="fa-solid fa-magnifying-glass text-brand-600 group-hover:scale-125 transition"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-800 group-hover:text-brand-700">Kenali Zatnya!</h4>
+                            <p class="text-xs text-slate-600">Tentukan wujud zat, sifat fisika/kimia, dan unsur/senyawa/campuran benda.</p>
+                        </div>
+
+                        <!-- Activity Card 2 -->
+                        <div onclick="startPrediksiPerubahan()" class="p-5 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:bg-brand-50/40 transition cursor-pointer space-y-2 group">
+                            <div class="flex justify-between items-center">
+                                <span class="px-2.5 py-0.5 rounded bg-brand-100 text-brand-700 text-xs font-bold">Modul 1 • P2</span>
+                                <i class="fa-solid fa-flask text-brand-600 group-hover:scale-125 transition"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-800 group-hover:text-brand-700">Prediksi Perubahan & LKPD</h4>
+                            <p class="text-xs text-slate-600">Identifikasi perubahan Fisika, Kimia, atau Biologi dan isi rancangan LKPD Digital.</p>
+                        </div>
+
+                        <!-- Activity Card 3 -->
+                        <div onclick="startDetektifSains()" class="p-5 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:bg-brand-50/40 transition cursor-pointer space-y-2 group">
+                            <div class="flex justify-between items-center">
+                                <span class="px-2.5 py-0.5 rounded bg-brand-100 text-brand-700 text-xs font-bold">Modul 1 • P3</span>
+                                <i class="fa-solid fa-user-ninja text-brand-600 group-hover:scale-125 transition"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-800 group-hover:text-brand-700">Detektif Sains</h4>
+                            <p class="text-xs text-slate-600">Temukan kesalahan dalam rancangan eksperimen penyelidikan ilmiah.</p>
+                        </div>
+
+                        <!-- Activity Card 4 -->
+                        <div onclick="startKlasifikasiZat()" class="p-5 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:bg-brand-50/40 transition cursor-pointer space-y-2 group">
+                            <div class="flex justify-between items-center">
+                                <span class="px-2.5 py-0.5 rounded bg-brand-100 text-brand-700 text-xs font-bold">Modul 1 • P5</span>
+                                <i class="fa-solid fa-layer-group text-brand-600 group-hover:scale-125 transition"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-800 group-hover:text-brand-700">Klasifikasi Zat</h4>
+                            <p class="text-xs text-slate-600">Kategorikan kartu zat ke Unsur, Senyawa, Homogen, atau Heterogen.</p>
+                        </div>
+
+                        <!-- Activity Card 5 -->
+                        <div onclick="startPasangkanAlat()" class="p-5 rounded-xl bg-slate-50 border border-slate-200 hover:border-amber-500 hover:bg-amber-50/40 transition cursor-pointer space-y-2 group">
+                            <div class="flex justify-between items-center">
+                                <span class="px-2.5 py-0.5 rounded bg-amber-100 text-amber-700 text-xs font-bold">Modul 2 • P1</span>
+                                <i class="fa-solid fa-ruler-combined text-amber-600 group-hover:scale-125 transition"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-800 group-hover:text-amber-700">Pasangkan Alat Ukur</h4>
+                            <p class="text-xs text-slate-600">Jodohkan alat ukur fisika dengan besaran pokok/turunan yang sesuai.</p>
+                        </div>
+
+                        <!-- Activity Card 6 -->
+                        <div onclick="startTebakEnergi()" class="p-5 rounded-xl bg-slate-50 border border-slate-200 hover:border-amber-500 hover:bg-amber-50/40 transition cursor-pointer space-y-2 group">
+                            <div class="flex justify-between items-center">
+                                <span class="px-2.5 py-0.5 rounded bg-amber-100 text-amber-700 text-xs font-bold">Modul 2 • P2</span>
+                                <i class="fa-solid fa-bolt text-amber-600 group-hover:scale-125 transition"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-800 group-hover:text-amber-700">Tebak Perubahan Energi</h4>
+                            <p class="text-xs text-slate-600">Tentukan transformasi energi awal menjadi bentuk energi akhir.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Workspace Target Area -->
+                <div id="act-workspace" class="hidden">
+                    <div class="flex justify-between items-center pb-4 mb-4 border-b border-slate-200">
+                        <h3 id="act-title" class="font-bold text-lg text-slate-800">Nama Aktivitas</h3>
+                        <button onclick="backToActivitySelect()" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-bold text-slate-700 flex items-center gap-1">
+                            <i class="fa-solid fa-arrow-left"></i> Kembali ke Menu Aktivitas
+                        </button>
+                    </div>
+                    <div id="act-content-body">
+                        <!-- Loaded dynamically via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: KUIS INTERAKTIF -->
+        <section id="page-kuis" class="page-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800">Kuis Interaktif Projek IPAS</h2>
+                    <p class="text-xs sm:text-sm text-slate-500">Soal-soal latihan interaktif Modul 1 dan Modul 2 dengan pembobotan dan feedback otomatis.</p>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="selectQuizModule(1)" id="quiz-mod1-btn" class="px-4 py-2 rounded-xl text-xs font-bold bg-brand-600 text-white shadow-sm">
+                        Kuis Modul 1 (10 Soal)
+                    </button>
+                    <button onclick="selectQuizModule(2)" id="quiz-mod2-btn" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">
+                        Kuis Modul 2 (10 Soal)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Play View -->
+            <div id="quiz-container" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-6">
+                <!-- Header Info Question -->
+                <div class="flex justify-between items-center text-xs text-slate-500 pb-3 border-b border-slate-100">
+                    <span id="quiz-progress-lbl" class="font-bold text-slate-700">Soal 1 dari 10</span>
+                    <span id="quiz-score-lbl" class="font-bold text-brand-700">Skor Saat Ini: 0</span>
+                </div>
+
+                <!-- Question Text -->
+                <div class="space-y-3">
+                    <span id="quiz-badge" class="px-2.5 py-1 rounded bg-brand-100 text-brand-800 text-xs font-bold">Modul 1</span>
+                    <h3 id="quiz-question-text" class="text-lg font-bold text-slate-800 leading-snug">
+                        Teks soal kuis akan muncul di sini...
+                    </h3>
+                </div>
+
+                <!-- Options -->
+                <div id="quiz-options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <!-- Dynamic choices inserted via JS -->
+                </div>
+
+                <!-- Instant Feedback Box -->
+                <div id="quiz-feedback-box" class="hidden p-4 rounded-xl border text-xs sm:text-sm space-y-1">
+                    <!-- Feedback text -->
+                </div>
+
+                <!-- Next/Finish Action Button -->
+                <div class="flex justify-end pt-2">
+                    <button id="quiz-next-btn" onclick="nextQuizQuestion()" class="hidden px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold text-xs sm:text-sm transition flex items-center gap-2">
+                        Soal Selanjutnya <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Result Summary Card -->
+            <div id="quiz-result-card" class="hidden bg-white rounded-2xl border border-slate-200 p-8 shadow-sm text-center space-y-6">
+                <div class="w-20 h-20 mx-auto rounded-full bg-brand-100 text-brand-600 flex items-center justify-center text-3xl">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-2xl font-bold text-slate-800">Kuis Selesai!</h3>
+                    <p class="text-sm text-slate-600">Terima kasih telah menyelesaikan kuis interaktif.</p>
+                </div>
+                <div class="inline-block bg-slate-50 border border-slate-200 rounded-2xl p-6">
+                    <p class="text-xs text-slate-500 font-semibold uppercase">Skor Akhir Anda</p>
+                    <p id="quiz-final-score" class="text-5xl font-extrabold text-brand-600 mt-1">100</p>
+                </div>
+                <div class="flex justify-center gap-3">
+                    <button onclick="restartCurrentQuiz()" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold text-xs sm:text-sm transition">
+                        Coba Lagi
+                    </button>
+                    <button onclick="showPage('evaluasi')" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold text-xs sm:text-sm transition">
+                        Lanjut ke Evaluasi Akhir
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 5: EVALUASI AKHIR -->
+        <section id="page-evaluasi" class="page-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                <h2 class="text-2xl font-bold text-slate-800">Evaluasi Akhir Pembelajaran IPAS</h2>
+                <p class="text-xs sm:text-sm text-slate-500">Evaluasi menyeluruh mencakup 15 Soal Pilihan Ganda dan 5 Soal Uraian berbasis HOTS & Penerapan Kejuruan.</p>
+            </div>
+
+            <!-- Tabs PG vs Uraian -->
+            <div class="flex border-b border-slate-200 gap-4">
+                <button id="eval-tab-pg" onclick="switchEvalTab('pg')" class="pb-3 text-sm font-bold border-b-2 border-brand-600 text-brand-600">
+                    Pilihan Ganda (15 Soal)
+                </button>
+                <button id="eval-tab-uraian" onclick="switchEvalTab('uraian')" class="pb-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800">
+                    Soal Uraian & Rubrik (5 Soal)
+                </button>
+            </div>
+
+            <!-- PG SECTION -->
+            <div id="eval-section-pg" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-6">
+                <form id="eval-pg-form" onsubmit="submitEvalPG(event)" class="space-y-6">
+                    <div id="eval-pg-list" class="space-y-6 divide-y divide-slate-100">
+                        <!-- Dynamic generated 15 PG questions -->
+                    </div>
+                    <div class="pt-4 border-t border-slate-200 flex justify-between items-center">
+                        <span id="eval-pg-score-display" class="text-sm font-bold text-brand-700"></span>
+                        <button type="submit" class="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold text-sm shadow-md transition">
+                            Kirim Jawaban & Hitung Skor
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- URAIAN SECTION -->
+            <div id="eval-section-uraian" class="hidden bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-6">
+                <div id="eval-uraian-list" class="space-y-6">
+                    <!-- Dynamic generated 5 Uraian questions with key rubrics -->
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 6: TANTANGAN 5 MENIT -->
+        <section id="page-tantangan" class="page-content hidden space-y-6">
+            <div class="bg-gradient-to-br from-amber-500 to-amber-600 text-white p-6 rounded-2xl shadow-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <span class="px-2.5 py-1 rounded bg-white/20 text-xs font-bold uppercase tracking-wider">Speed Challenge</span>
+                    <h2 class="text-2xl font-extrabold mt-1">Tantangan Sains 5 Menit!</h2>
+                    <p class="text-xs sm:text-sm text-amber-100">Uji seberapa cepat Anda menjawab konsep dasar zat & energi dalam waktu terbatas.</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md px-5 py-3 rounded-2xl border border-white/20 text-center">
+                    <span class="text-xs text-amber-100 uppercase block font-semibold">Sisa Waktu</span>
+                    <span id="timer-display" class="text-3xl font-mono font-extrabold">05:00</span>
+                </div>
+            </div>
+
+            <div id="tantangan-card" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-6">
+                <div id="tantangan-start-view" class="text-center py-8 space-y-4">
+                    <i class="fa-solid fa-stopwatch text-5xl text-amber-500"></i>
+                    <h3 class="text-xl font-bold text-slate-800">Siap Menguji Kecepatan Berpikir IPAS?</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto">
+                        Anda akan diberikan 6 pertanyaan singkat. Waktu berjalan mundur selama 5 menit.
+                    </p>
+                    <button onclick="start5MinChallenge()" class="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold text-sm shadow-md transition">
+                        Mulai Tantangan Sekarang
+                    </button>
+                </div>
+
+                <div id="tantangan-play-view" class="hidden space-y-6">
+                    <div id="tantangan-questions-container" class="space-y-6">
+                        <!-- Questions injected dynamically -->
+                    </div>
+                    <button onclick="finish5MinChallenge()" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold text-sm transition">
+                        Selesaikan Tantangan
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 7: GALERI gambar -->
+        <section id="page-galeri" class="page-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                <h2 class="text-2xl font-bold text-slate-800">Galeri "Belajar Dari Gambar"</h2>
+                <p class="text-xs sm:text-sm text-slate-500">Visualisasi konsep zat, reaksi, energi, dan kaitannya dengan praktik keahlian DPIB & Kuliner.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Card 1 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition group">
+                    <div class="h-48 bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center p-4 relative">
+                        <i class="fa-solid fa-cubes-stacked text-6xl text-brand-600 group-hover:scale-110 transition"></i>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 text-slate-700 font-bold text-[10px]">Wujud Zat</span>
+                    </div>
+                    <div class="p-4 space-y-1">
+                        <h4 class="font-bold text-slate-800 text-sm">3 Wujud Zat & Partikelnya</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Susunan molekul rapat pada padat, agak renggang pada cair, dan sangat bebas bergerak pada gas.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Card 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition group">
+                    <div class="h-48 bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center p-4 relative">
+                        <i class="fa-solid fa-fire-burner text-6xl text-amber-600 group-hover:scale-110 transition"></i>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 text-slate-700 font-bold text-[10px]">Kuliner</span>
+                    </div>
+                    <div class="p-4 space-y-1">
+                        <h4 class="font-bold text-slate-800 text-sm">Transformasi Energi & Kimia Memasak</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Penggunaan kompor gas (Energi Kimia -> Panas) dan denaturasi protein saat meragi adonan & menggoreng telur.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Card 3 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition group">
+                    <div class="h-48 bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center p-4 relative">
+                        <i class="fa-solid fa-building text-6xl text-slate-700 group-hover:scale-110 transition"></i>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 text-slate-700 font-bold text-[10px]">DPIB</span>
+                    </div>
+                    <div class="p-4 space-y-1">
+                        <h4 class="font-bold text-slate-800 text-sm">Reaksi Pengerasan Beton</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Semen + air mengalami reaksi hidrasi (perubahan kimia eksoterm) membentuk struktur beton yang kokoh.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Card 4 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition group">
+                    <div class="h-48 bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center p-4 relative">
+                        <i class="fa-solid fa-solar-panel text-6xl text-emerald-600 group-hover:scale-110 transition"></i>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 text-slate-700 font-bold text-[10px]">Energi Terbarukan</span>
+                    </div>
+                    <div class="p-4 space-y-1">
+                        <h4 class="font-bold text-slate-800 text-sm">Panel Surya (Solar Cell)</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Mengubah energi foton sinar matahari secara langsung menjadi energi listrik melalui efek fotovoltaik.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Card 5 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition group">
+                    <div class="h-48 bg-gradient-to-br from-rose-100 to-pink-100 flex items-center justify-center p-4 relative">
+                        <i class="fa-solid fa-shield-virus text-6xl text-rose-600 group-hover:scale-110 transition"></i>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 text-slate-700 font-bold text-[10px]">Oksidasi</span>
+                    </div>
+                    <div class="p-4 space-y-1">
+                        <h4 class="font-bold text-slate-800 text-sm">Korosi & Besi Berkarat</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Besi bereaksi dengan oksigen dan kelembaban air membentuk lapisan karat (Fe2O3.nH2O) sebagai perubahan kimia.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Card 6 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition group">
+                    <div class="h-48 bg-gradient-to-br from-sky-100 to-blue-200 flex items-center justify-center p-4 relative">
+                        <i class="fa-solid fa-flask-vial text-6xl text-sky-600 group-hover:scale-110 transition"></i>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 text-slate-700 font-bold text-[10px]">Campuran</span>
+                    </div>
+                    <div class="p-4 space-y-1">
+                        <h4 class="font-bold text-slate-800 text-sm">Larutan Homogen vs Heterogen</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Perbedaan keterlarutan molekul gula dalam air hangat vs suspensi campuran pasir dan air.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 8: REFLEKSI -->
+        <section id="page-refleksi" class="page-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                <h2 class="text-2xl font-bold text-slate-800">Refleksi Pembelajaran Siswa</h2>
+                <p class="text-xs sm:text-sm text-slate-500">Refleksikan apa yang telah Anda pelajari dan bagaimana dampaknya terhadap pemahaman keahlian Anda.</p>
+            </div>
+
+            <form id="refleksi-form" onsubmit="saveRefleksi(event)" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-6">
+                <!-- Emoji selection -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-bold text-slate-800">Bagaimana perasaan Anda terhadap pemahaman materi Projek IPAS sejauh ini?</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <label class="p-3 rounded-xl border border-slate-200 hover:border-brand-500 cursor-pointer text-center space-y-1 block">
+                            <input type="radio" name="refleksi_emoji" value="Sangat Paham" class="sr-only peer" required>
+                            <div class="text-3xl peer-checked:scale-125 transition">😊</div>
+                            <p class="text-xs font-bold text-slate-700">Sangat paham</p>
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 hover:border-brand-500 cursor-pointer text-center space-y-1 block">
+                            <input type="radio" name="refleksi_emoji" value="Cukup Paham" class="sr-only peer">
+                            <div class="text-3xl peer-checked:scale-125 transition">🙂</div>
+                            <p class="text-xs font-bold text-slate-700">Cukup paham</p>
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 hover:border-brand-500 cursor-pointer text-center space-y-1 block">
+                            <input type="radio" name="refleksi_emoji" value="Masih Perlu Belajar" class="sr-only peer">
+                            <div class="text-3xl peer-checked:scale-125 transition">😐</div>
+                            <p class="text-xs font-bold text-slate-700">Perlu belajar</p>
+                        </label>
+                        <label class="p-3 rounded-xl border border-slate-200 hover:border-brand-500 cursor-pointer text-center space-y-1 block">
+                            <input type="radio" name="refleksi_emoji" value="Masih Bingung" class="sr-only peer">
+                            <div class="text-3xl peer-checked:scale-125 transition">🤔</div>
+                            <p class="text-xs font-bold text-slate-700">Masih bingung</p>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Questions -->
+                <div class="space-y-4 text-xs sm:text-sm">
+                    <div>
+                        <label class="block font-bold text-slate-800 mb-1">1. Konsep apa yang paling Anda kuasai dengan baik?</label>
+                        <textarea name="q1" rows="2" class="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 outline-none" placeholder="Tuliskan di sini..." required></textarea>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-800 mb-1">2. Fenomena sehari-hari atau kejuruan apa yang paling menarik bagi Anda?</label>
+                        <textarea name="q2" rows="2" class="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 outline-none" placeholder="Tuliskan di sini..." required></textarea>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-800 mb-1">3. Bagaimana materi ini berguna bagi jurusan Anda (DPIB / Kuliner / Keahlian lain)?</label>
+                        <textarea name="q3" rows="2" class="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 outline-none" placeholder="Tuliskan di sini..." required></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold text-sm transition">
+                    Simpan Refleksi Saya
+                </button>
+            </form>
+        </section>
+
+        <!-- PAGE 9: PANDUAN GURU -->
+        <section id="page-guru" class="page-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                <div class="flex items-center space-x-2 text-accent-600 font-bold text-xs uppercase">
+                    <i class="fa-solid fa-user-tie"></i> Modul Pegangan Pendidik
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">Panduan Guru IPAS SMK</h2>
+                <p class="text-xs sm:text-sm text-slate-500">Pedoman implementasi pembelajaran, rubrik asesmen, dan Kunci Jawaban LKPD.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-6 text-xs sm:text-sm text-slate-700">
+                <div class="p-4 bg-accent-50/50 rounded-xl border border-accent-100 space-y-2">
+                    <h3 class="font-bold text-accent-900 text-base">Perancangan Pembelajaran IPAS Berbasis CP</h3>
+                    <p>
+                        Media pembelajaran ini dikembangkan selaras dengan Capaian Pembelajaran (CP) Projek IPAS Fase E untuk SMK, mengintegrasikan 3 Elemen Utama:
+                    </p>
+                    <ul class="list-disc list-inside space-y-1 font-medium text-accent-800">
+                        <li>Elemen 1: Menjelaskan Fenomena secara Ilmiah</li>
+                        <li>Elemen 2: Menyusun dan Melaksanakan Penyelidikan Ilmiah</li>
+                        <li>Elemen 3: Menerjemahkan Data & Bukti secara Ilmiah serta Merefleksikan</li>
+                    </ul>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="font-bold text-slate-800 text-base">Saran Langkah Kegiatan di Kelas:</h4>
+                    <ol class="list-decimal list-inside space-y-2">
+                        <li><strong>Orientasi Siswa (10 Menit):</strong> Guru menayangkan gambar fenomena kontekstual melalui menu Galeri atau Beranda.</li>
+                        <li><strong>Aktivitas Mandiri/Kelompok (30 Menit):</strong> Siswa membuka modul materi dan mengerjakan Aktivitas Interaktif / LKPD Digital sesuai pertemuan.</li>
+                        <li><strong>Verifikasi & Analisis Data (20 Menit):</strong> Siswa mendiskusikan hasil simulasi "Detektif Sains" atau Klasifikasi Zat.</li>
+                        <li><strong>Refleksi & Asesmen (15 Menit):</strong> Siswa mengisi lembar Refleksi dan Kuis Interaktif secara mandiri.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER (CONSISTENT ON ALL PAGES) -->
+    <footer class="bg-slate-900 text-slate-400 text-xs border-t border-slate-800 py-6 mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 text-center">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-3 border-b border-slate-800 pb-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-7 h-7 rounded-lg bg-brand-600 text-white flex items-center justify-center font-bold text-xs">
+                        <i class="fa-solid fa-atom"></i>
+                    </div>
+                    <span class="font-bold text-slate-200 text-sm">PROJEK IPAS – SMKN 1 KALIPUCANG</span>
+                </div>
+                <p class="text-slate-300 font-semibold">
+                    Dibuat oleh Evi Fitriani – SMKN 1 Kalipucang
+                </p>
+            </div>
+            
+            <p class="italic text-slate-400 max-w-2xl mx-auto text-xs leading-relaxed">
+                “Belajar IPAS bukan hanya memahami konsep, tetapi mampu melihat sains dalam kehidupan dan bidang keahlian kita.”
+            </p>
+
+            <p class="text-[11px] text-slate-500">
+                &copy; 2026 Media Pembelajaran Digital Projek IPAS SMK Fase E / Kelas X. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // GLOBAL APP STATE
+        const appState = {
+            activePage: 'beranda',
+            progress: {
+                completedActivities: new Set(),
+            },
+            quiz: {
+                module: 1,
+                currentIndex: 0,
+                score: 0,
+                answers: []
+            },
+            challengeTimer: null,
+            challengeSeconds: 300
+        };
+
+        // DOM LOAD INITIALIZATION
+        window.onload = function() {
+            // Restore local storage if available
+            const savedProgress = localStorage.getItem('ipas_progress');
+            if (savedProgress) {
+                try {
+                    const parsed = JSON.parse(savedProgress);
+                    appState.progress.completedActivities = new Set(parsed);
+                } catch(e){}
+            }
+            updateProgressUI();
+            initEvalPGForm();
+            initEvalUraian();
+        };
+
+        // NAVIGATION LOGIC
+        function showPage(pageId) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
+            const target = document.getElementById(`page-${pageId}`);
+            if (target) {
+                target.classList.remove('hidden');
+                appState.activePage = pageId;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Update nav buttons highlight
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-50', 'text-brand-700', 'font-bold');
+            });
+            const activeNav = document.getElementById(`nav-${pageId}`);
+            if (activeNav) {
+                activeNav.classList.add('bg-brand-50', 'text-brand-700', 'font-bold');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function showMateriModul(modulNum) {
+            showPage('materi');
+            switchMateriTab(modulNum);
+        }
+
+        function switchMateriTab(modulNum) {
+            const m1 = document.getElementById('materi-modul-1');
+            const m2 = document.getElementById('materi-modul-2');
+            const b1 = document.getElementById('btn-tab-m1');
+            const b2 = document.getElementById('btn-tab-m2');
+
+            if (modulNum === 1) {
+                m1.classList.remove('hidden');
+                m2.classList.add('hidden');
+                b1.className = "px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition bg-white text-brand-700 shadow-sm";
+                b2.className = "px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition text-slate-600 hover:text-slate-900";
+            } else {
+                m2.classList.remove('hidden');
+                m1.classList.add('hidden');
+                b2.className = "px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition bg-white text-amber-700 shadow-sm";
+                b1.className = "px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition text-slate-600 hover:text-slate-900";
+            }
+        }
+
+        // PROGRESS TRACKER
+        function markActivityComplete(actKey) {
+            appState.progress.completedActivities.add(actKey);
+            localStorage.setItem('ipas_progress', JSON.stringify(Array.from(appState.progress.completedActivities)));
+            updateProgressUI();
+        }
+
+        function updateProgressUI() {
+            const totalTasks = 10;
+            const completed = appState.progress.completedActivities.size;
+            const pct = Math.min(100, Math.round((completed / totalTasks) * 100));
+            
+            const bar = document.getElementById('header-progress-bar');
+            const txt = document.getElementById('header-progress-text');
+            if (bar && txt) {
+                bar.style.width = pct + '%';
+                txt.innerText = pct + '%';
+            }
+        }
+
+        // AKTIVITAS INTERAKTIF ENGINE
+        function openActivity(actType) {
+            showPage('aktivitas');
+            if (actType === 'kenali_zat') startKenaliZat();
+            else if (actType === 'prediksi_perubahan') startPrediksiPerubahan();
+            else if (actType === 'detektif_sains') startDetektifSains();
+            else if (actType === 'klasifikasi_zat') startKlasifikasiZat();
+            else if (actType === 'pasangkan_alat') startPasangkanAlat();
+            else if (actType === 'tebak_energi') startTebakEnergi();
+            else if (actType === 'baca_data') startBacaData();
+            else startKenaliZat();
+        }
+
+        function backToActivitySelect() {
+            document.getElementById('act-select-screen').classList.remove('hidden');
+            document.getElementById('act-workspace').classList.add('hidden');
+        }
+
+        // GAME 1: KENALI ZATNYA
+        function startKenaliZat() {
+            document.getElementById('act-select-screen').classList.add('hidden');
+            const ws = document.getElementById('act-workspace');
+            ws.classList.remove('hidden');
+            document.getElementById('act-title').innerText = "Aktivitas 1: Kenali Zatnya!";
+
+            const body = document.getElementById('act-content-body');
+            body.innerHTML = `
+                <div class="space-y-4 text-xs sm:text-sm">
+                    <p class="text-slate-600">Pilih salah satu benda di bawah ini lalu tentukan wujud, sifat, dan klasifikasinya:</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <button onclick="inspectZat('Es Batu')" class="p-3 bg-slate-50 border border-slate-200 rounded-xl hover:bg-brand-50 hover:border-brand-500 font-bold text-slate-700">🧊 Es Batu</button>
+                        <button onclick="inspectZat('Besi Berkarat')" class="p-3 bg-slate-50 border border-slate-200 rounded-xl hover:bg-brand-50 hover:border-brand-500 font-bold text-slate-700">⚙️ Besi Berkarat</button>
+                        <button onclick="inspectZat('Air Garam')" class="p-3 bg-slate-50 border border-slate-200 rounded-xl hover:bg-brand-50 hover:border-brand-500 font-bold text-slate-700">🧂 Air Garam</button>
+                        <button onclick="inspectZat('Oksigen')" class="p-3 bg-slate-50 border border-slate-200 rounded-xl hover:bg-brand-50 hover:border-brand-500 font-bold text-slate-700">🎈 Gas Oksigen</button>
+                    </div>
+                    <div id="zat-detail-box" class="hidden p-4 rounded-xl bg-brand-50/60 border border-brand-200 space-y-3">
+                        <!-- Dynamic details -->
+                    </div>
+                </div>
+            `;
+        }
+
+        function inspectZat(name) {
+            const box = document.getElementById('zat-detail-box');
+            box.classList.remove('hidden');
+            let info = "";
+
+            if (name === 'Es Batu') {
+                info = `
+                    <h4 class="font-bold text-brand-800 text-base">Es Batu (H2O Padat)</h4>
+                    <p><strong>Wujud:</strong> Padat</p>
+                    <p><strong>Klasifikasi:</strong> Senyawa (H2O)</p>
+                    <p><strong>Sifat Fisika Utama:</strong> Mencair pada suhu 0°C.</p>
+                    <div class="p-2 bg-emerald-100 text-emerald-800 rounded font-semibold text-xs">
+                        Benar! Es batu adalah H2O berwujud padat. Ketika meleleh menjadi air cair, sifat kimianya tidak berubah (Perubahan Fisika).
+                    </div>
+                `;
+            } else if (name === 'Besi Berkarat') {
+                info = `
+                    <h4 class="font-bold text-brand-800 text-base">Besi Berkarat (Fe2O3)</h4>
+                    <p><strong>Wujud:</strong> Padat</p>
+                    <p><strong>Klasifikasi:</strong> Senyawa Karat Hasil Reaksi Oksidasi</p>
+                    <p><strong>Sifat Kimia:</strong> Mudah bereaksi dengan air dan oksigen.</p>
+                    <div class="p-2 bg-emerald-100 text-emerald-800 rounded font-semibold text-xs">
+                        Tepat! Pembentukan karat merupakan reaksi kimia yang menghasilkan zat baru yang tidak mudah kembali ke besi murni.
+                    </div>
+                `;
+            } else if (name === 'Air Garam') {
+                info = `
+                    <h4 class="font-bold text-brand-800 text-base">Air Garam</h4>
+                    <p><strong>Wujud:</strong> Cair</p>
+                    <p><strong>Klasifikasi:</strong> Campuran Homogen (Larutan)</p>
+                    <p><strong>Sifat Fisika:</strong> Menghantarkan listrik (Larutan Elektrolit).</p>
+                    <div class="p-2 bg-emerald-100 text-emerald-800 rounded font-semibold text-xs">
+                        Benar! Garam terlarut sempurna dalam air membentuk fase tunggal (Homogen).
+                    </div>
+                `;
+            } else {
+                info = `
+                    <h4 class="font-bold text-brand-800 text-base">Gas Oksigen (O2)</h4>
+                    <p><strong>Wujud:</strong> Gas</p>
+                    <p><strong>Klasifikasi:</strong> Unsur (Molekul Unsur O2)</p>
+                    <p><strong>Sifat Kimia:</strong> Membantu proses pembakaran.</p>
+                    <div class="p-2 bg-emerald-100 text-emerald-800 rounded font-semibold text-xs">
+                        Benar! Oksigen terdiri dari atom sejenis (Oksigen) sehingga tergolong Unsur.
+                    </div>
+                `;
+            }
+            box.innerHTML = info;
+            markActivityComplete('kenali_zat');
+        }
+
+        // GAME 2: DETEKTIF SAINS
+        function startDetektifSains() {
+            document.getElementById('act-select-screen').classList.add('hidden');
+            const ws = document.getElementById('act-workspace');
+            ws.classList.remove('hidden');
+            document.getElementById('act-title').innerText = "Aktivitas 3: Detektif Sains (Temukan Kesalahan Eksperimen)";
+
+            const body = document.getElementById('act-content-body');
+            body.innerHTML = `
+                <div class="space-y-4 text-xs sm:text-sm">
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+                        <p class="font-bold text-slate-800">Kasus Rancangan Eksperimen Budi:</p>
+                        <p class="text-slate-600">
+                            Budi ingin menguji laju perkaratan besi pada 3 paku. 
+                            Paku A ditaruh di mangkuk terbuka berisi air suling. 
+                            Paku B ditaruh di gelas terbuka berisi air garam dalam jumlah 2x lipat. 
+                            Paku C ditaruh di luar ruangan di atas tanah basah tanpa wadah.
+                            Budi mengamati hasilnya seminggu kemudian tanpa mencatat suhu ruangan.
+                        </p>
+                    </div>
+
+                    <p class="font-bold text-slate-800">Manakah kesalahan utama dalam rancangan penyelidikan ilmiah Budi di atas?</p>
+                    <div class="space-y-2">
+                        <button onclick="checkDetektif(false)" class="w-full text-left p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-slate-700">A. Budi menggunakan paku terbuat dari besi.</button>
+                        <button onclick="checkDetektif(true)" class="w-full text-left p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-slate-700">B. Variabel kontrol tidak dijaga seragam (volume air, wadah, dan lingkungan berbeda-beda).</button>
+                        <button onclick="checkDetektif(false)" class="w-full text-left p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-slate-700">C. Menggunakan air garam pada salah satu perlakuan.</button>
+                    </div>
+
+                    <div id="detektif-fb" class="hidden p-4 rounded-xl text-xs space-y-1"></div>
+                </div>
+            `;
+        }
+
+        function checkDetektif(isCorrect) {
+            const fb = document.getElementById('detektif-fb');
+            fb.classList.remove('hidden');
+            if (isCorrect) {
+                fb.className = "p-4 rounded-xl text-xs space-y-1 bg-emerald-100 text-emerald-900 border border-emerald-300";
+                fb.innerHTML = "<strong>Hebat, Detektif!</strong> Jawaban Anda Benar. Eksperimen yang valid harus menjaga variabel kontrol (wadah, volume, suhu) tetap sama persis agar hasil pengamatan adil (fair test).";
+                markActivityComplete('detektif_sains');
+            } else {
+                fb.className = "p-4 rounded-xl text-xs space-y-1 bg-rose-100 text-rose-900 border border-rose-300";
+                fb.innerHTML = "<strong>Belum Tepat.</strong> Coba perhatikan lagi variabel kontrol wadah dan volume air yang dipakai Budi.";
+            }
+        }
+
+        // GAME 3: KLASIFIKASI ZAT
+        function startKlasifikasiZat() {
+            document.getElementById('act-select-screen').classList.add('hidden');
+            const ws = document.getElementById('act-workspace');
+            ws.classList.remove('hidden');
+            document.getElementById('act-title').innerText = "Aktivitas 5: Permainan Klasifikasi Zat";
+
+            const body = document.getElementById('act-content-body');
+            body.innerHTML = `
+                <div class="space-y-4 text-xs sm:text-sm">
+                    <p class="text-slate-600">Klasifikasikan contoh zat di bawah ini dengan mengklik tombol kategori yang benar:</p>
+                    
+                    <div id="klasifikasi-card" class="p-6 bg-brand-50 border border-brand-200 rounded-2xl text-center space-y-3">
+                        <span class="text-xs font-bold uppercase text-brand-600">Kartu Zat Saat Ini</span>
+                        <h3 id="klasifikasi-item-name" class="text-2xl font-extrabold text-slate-800">BETON</h3>
+                        <p class="text-xs text-slate-500">Campuran semen, air, pasir, dan kerikil pada konstruksi bangunan.</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <button onclick="answerKlasifikasi('UNSUR')" class="p-3 bg-white border border-slate-200 rounded-xl font-bold hover:bg-brand-600 hover:text-white transition">UNSUR</button>
+                        <button onclick="answerKlasifikasi('SENYAWA')" class="p-3 bg-white border border-slate-200 rounded-xl font-bold hover:bg-brand-600 hover:text-white transition">SENYAWA</button>
+                        <button onclick="answerKlasifikasi('HOMOGEN')" class="p-3 bg-white border border-slate-200 rounded-xl font-bold hover:bg-brand-600 hover:text-white transition">CAMPURAN HOMOGEN</button>
+                        <button onclick="answerKlasifikasi('HETEROGEN')" class="p-3 bg-white border border-slate-200 rounded-xl font-bold hover:bg-brand-600 hover:text-white transition">CAMPURAN HETEROGEN</button>
+                    </div>
+
+                    <div id="klasifikasi-fb" class="hidden p-3 rounded-xl text-xs text-center font-bold"></div>
+                </div>
+            `;
+        }
+
+        function answerKlasifikasi(chosen) {
+            const fb = document.getElementById('klasifikasi-fb');
+            fb.classList.remove('hidden');
+            if (chosen === 'HETEROGEN') {
+                fb.className = "p-3 rounded-xl text-xs text-center font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
+                fb.innerText = "TEPAT SEKALI! Beton terdiri dari campuran bahan padat yang masih terlihat batas kerikil dan semennya (Heterogen).";
+                markActivityComplete('klasifikasi_zat');
+            } else {
+                fb.className = "p-3 rounded-xl text-xs text-center font-bold bg-rose-100 text-rose-800 border border-rose-300";
+                fb.innerText = "Belum tepat. Beton merupakan Campuran Heterogen karena komponen kerikil/pasirnya tidak menyatu sempurna secara molekuler.";
+            }
+        }
+
+        // GAME 4: PASANGKAN ALAT UKUR
+        function startPasangkanAlat() {
+            document.getElementById('act-select-screen').classList.add('hidden');
+            const ws = document.getElementById('act-workspace');
+            ws.classList.remove('hidden');
+            document.getElementById('act-title').innerText = "Game: Pasangkan Alat Ukur";
+
+            const body = document.getElementById('act-content-body');
+            body.innerHTML = `
+                <div class="space-y-4 text-xs sm:text-sm">
+                    <p class="text-slate-600">Klik alat ukur untuk mencocokkannya dengan besaran yang diukur:</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="p-3 bg-slate-50 border rounded-xl flex justify-between items-center">
+                            <span>🌡️ Termometer</span>
+                            <button onclick="checkAlatMatch('Suhu')" class="px-3 py-1 bg-amber-500 text-white rounded font-bold text-xs">Pilih Suhu</button>
+                        </div>
+                        <div class="p-3 bg-slate-50 border rounded-xl flex justify-between items-center">
+                            <span>⚖️ Neraca / Timbangan</span>
+                            <button onclick="checkAlatMatch('Massa')" class="px-3 py-1 bg-amber-500 text-white rounded font-bold text-xs">Pilih Massa</button>
+                        </div>
+                    </div>
+                    <div id="alat-fb" class="hidden p-3 rounded-xl bg-emerald-100 text-emerald-800 font-bold text-xs text-center">
+                        Pemasangan Benar! Termometer mengukur Suhu & Neraca mengukur Massa.
+                    </div>
+                </div>
+            `;
+        }
+
+        function checkAlatMatch(besaran) {
+            const fb = document.getElementById('alat-fb');
+            fb.classList.remove('hidden');
+            markActivityComplete('pasangkan_alat');
+        }
+
+        // GAME 5: TEBAK PERUBAHAN ENERGI
+        function startTebakEnergi() {
+            document.getElementById('act-select-screen').classList.add('hidden');
+            const ws = document.getElementById('act-workspace');
+            ws.classList.remove('hidden');
+            document.getElementById('act-title').innerText = "Game: Tebak Perubahan Energi";
+
+            const body = document.getElementById('act-content-body');
+            body.innerHTML = `
+                <div class="space-y-4 text-xs sm:text-sm">
+                    <div class="p-4 bg-amber-50 border border-amber-200 rounded-xl space-y-1">
+                        <h4 class="font-bold text-slate-800">Peralatan: Blender Dapur / Mixer Adonan</h4>
+                        <p class="text-slate-600">Saat colokan dimasukkan ke stopkontak dan tombol dites tekan, terjadi perubahan energi apa?</p>
+                    </div>
+                    <div class="space-y-2">
+                        <button onclick="checkEnergi(false)" class="w-full text-left p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium">A. Energi Panas -> Energi Cahaya</button>
+                        <button onclick="checkEnergi(true)" class="w-full text-left p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium">B. Energi Listrik -> Energi Gerak (Kinetik)</button>
+                        <button onclick="checkEnergi(false)" class="w-full text-left p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium">C. Energi Kimia -> Energi Listrik</button>
+                    </div>
+                    <div id="energi-fb" class="hidden p-3 rounded-xl text-xs font-bold text-center"></div>
+                </div>
+            `;
+        }
+
+        function checkEnergi(isCorrect) {
+            const fb = document.getElementById('energi-fb');
+            fb.classList.remove('hidden');
+            if (isCorrect) {
+                fb.className = "p-3 rounded-xl text-xs font-bold text-center bg-emerald-100 text-emerald-800 border border-emerald-300";
+                fb.innerText = "BENAR! Motor blender mengubah arus listrik menjadi energi gerak mekanik untuk memutar pisau pemotong.";
+                markActivityComplete('tebak_energi');
+            } else {
+                fb.className = "p-3 rounded-xl text-xs font-bold text-center bg-rose-100 text-rose-800 border border-rose-300";
+                fb.innerText = "Belum tepat. Coba perhatikan sumber daya energi masuknya.";
+            }
+        }
+
+        // BACA DATA AKTIVITAS
+        function startBacaData() {
+            document.getElementById('act-select-screen').classList.add('hidden');
+            const ws = document.getElementById('act-workspace');
+            ws.classList.remove('hidden');
+            document.getElementById('act-title').innerText = "Aktivitas 4: Baca Data Pengamatan";
+
+            const body = document.getElementById('act-content-body');
+            body.innerHTML = `
+                <div class="space-y-4 text-xs sm:text-sm">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-slate-200 text-xs">
+                            <thead>
+                                <tr class="bg-slate-100">
+                                    <th class="border border-slate-200 p-2">Sampel</th>
+                                    <th class="border border-slate-200 p-2">Perlakuan</th>
+                                    <th class="border border-slate-200 p-2">Pengamatan Suhu</th>
+                                    <th class="border border-slate-200 p-2">Perubahan Warna</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border p-2">A. Es Batu</td>
+                                    <td class="border p-2">Dipanaskan 5 Menit</td>
+                                    <td class="border p-2">Naik dari 0°C ke 25°C</td>
+                                    <td class="border p-2">Tetap Jernih (Mencair)</td>
+                                </tr>
+                                <tr>
+                                    <td class="border p-2">B. Gula Pasir</td>
+                                    <td class="border p-2">Dipanaskan Kuat</td>
+                                    <td class="border p-2">Suhu > 160°C</td>
+                                    <td class="border p-2">Putih menjadi Cokelat Hitam (Karamel/Hangus)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="font-bold text-slate-800">Berdasarkan tabel di atas, sampel manakah yang mengalami PERUBAHAN KIMIA?</p>
+                    <div class="flex gap-3">
+                        <button onclick="checkBacaData('A')" class="px-4 py-2 bg-slate-100 border rounded-xl font-bold">Sampel A (Es Batu)</button>
+                        <button onclick="checkBacaData('B')" class="px-4 py-2 bg-brand-600 text-white rounded-xl font-bold">Sampel B (Gula Pasir)</button>
+                    </div>
+                    <div id="baca-fb" class="hidden p-3 rounded-xl bg-emerald-100 text-emerald-800 font-bold text-xs">
+                        BENAR! Sampel B mengalami perubahan warna permanent dan terbentuk zat baru (karamel/karbon) akibat reaksi dehidrasi gula (Perubahan Kimia).
+                    </div>
+                </div>
+            `;
+        }
+
+        function checkBacaData(ans) {
+            const fb = document.getElementById('baca-fb');
+            fb.classList.remove('hidden');
+            if (ans === 'B') markActivityComplete('baca_data');
+        }
+
+        // KUIS INTERAKTIF ENGINE
+        const quizData = {
+            m1: [
+                {
+                    q: "Sesuatu yang memiliki massa dan menempati ruang disebut...",
+                    options: ["Energi", "Zat / Materi", "Gaya", "Gelombang"],
+                    ans: 1,
+                    exp: "Zat atau materi didefinisikan sebagai segala sesuatu yang mempunyai massa dan menempati ruang."
+                },
+                {
+                    q: "Perubahan zat yang TIDAK menghasilkan zat baru dinamakan...",
+                    options: ["Perubahan Kimia", "Perubahan Biologi", "Perubahan Fisika", "Reaksi Oksidasi"],
+                    ans: 2,
+                    exp: "Perubahan fisika hanya mengubah wujud atau bentuk tanpa mengubah identitas kimia molekul zat."
+                },
+                {
+                    q: "Peristiwa besi berkarat termasuk contoh dari...",
+                    options: ["Perubahan Fisika", "Perubahan Kimia", "Perubahan Wujud", "Sublimasi"],
+                    ans: 1,
+                    exp: "Perkaratan besi membentuk zat baru berupa besi oksida (Fe2O3) sehingga merupakan perubahan kimia."
+                },
+                {
+                    q: "Zat tunggal paling sederhana yang tidak dapat diuraikan lagi secara kimia biasa dinamakan...",
+                    options: ["Senyawa", "Unsur", "Campuran Homogen", "Larutan"],
+                    ans: 1,
+                    exp: "Unsur adalah zat tunggal dasar penyuusun materi."
+                },
+                {
+                    q: "Air garam dan udara bersih tergolong sebagai...",
+                    options: ["Campuran Homogen", "Campuran Heterogen", "Unsur Murni", "Senyawa Tunggal"],
+                    ans: 0,
+                    exp: "Campuran homogen memiliki komposisi merata sehingga komponen penyusunnya tidak dapat dibedakan secara kasat mata."
+                },
+                {
+                    q: "Beton pada konstruksi bangunan DPIB merupakan contoh dari...",
+                    options: ["Unsur Logam", "Senyawa Tunggal", "Campuran Heterogen", "Gas Terlarut"],
+                    ans: 2,
+                    exp: "Beton terdiri dari semen, pasir, dan batu kerikil yang membentuk campuran heterogen padat."
+                },
+                {
+                    q: "Mengembangnya adonan roti akibat penggunaan ragi merupakan contoh dari perubahah...",
+                    options: ["Fisika Murni", "Biologi / Bio-Kimia", "Penguapan", "Kondensasi"],
+                    ans: 1,
+                    exp: "Proses fermentasi mikroorganisme yeast pada adonan merupakan perubahan biologi/bio-kimia."
+                },
+                {
+                    q: "Berikut ini yang merupakan contoh SIFAT KIMIA suatu zat adalah...",
+                    options: ["Titik didih air", "Warna emas", "Kelarutan gula", "Mudah terbakar"],
+                    ans: 3,
+                    exp: "Kemudahan terbakar hanya dapat diamati ketika zat bereaksi kimia dengan oksigen."
+                },
+                {
+                    q: "Langkah pertama dalam urutan Metode Penyelidikan Ilmiah adalah...",
+                    options: ["Menarik Kesimpulan", "Merumuskan Masalah / Pertanyaan", "Mengolah Data", "Menganalisis Grafik"],
+                    ans: 1,
+                    exp: "Penyelidikan diawali dengan mengidentifikasi dan merumuskan masalah ilmiah."
+                },
+                {
+                    q: "Tembaga (Cu) dan Emas (Au) dalam tabel periodik tergolong sebagai...",
+                    options: ["Senyawa", "Campuran Heterogen", "Unsur Logam", "Larutan"],
+                    ans: 2,
+                    exp: "Tembaga dan emas adalah zat tunggal berupa unsur logam."
+                }
+            ],
+            m2: [
+                {
+                    q: "Alat ukur yang tepat untuk mengukur SUHU suatu zat adalah...",
+                    options: ["Stopwatch", "Termometer", "Neraca Ohaus", "Multimeter"],
+                    ans: 1,
+                    exp: "Termometer adalah alat ukur besaran pokok suhu."
+                },
+                {
+                    q: "Hukum Kekekalan Energi menyatakan bahwa energi...",
+                    options: ["Dapat dimusnahkan", "Dapat diciptakan dari tidak ada", "Tidak dapat diciptakan/dimusnahkan, hanya diubah bentuknya", "Selalu berkurang hingga habis"],
+                    ans: 2,
+                    exp: "Hukum Pertama Termodinamika menyatakan energi bersifat kekal dan hanya mengalami transformasi."
+                },
+                {
+                    q: "Saat lampu pijar menyala, transformasi energi utama yang terjadi adalah...",
+                    options: ["Energi Listrik -> Energi Cahaya & Panas", "Energi Kimia -> Energi Gerak", "Energi Bunyi -> Energi Listrik", "Energi Kinetik -> Energi Potensial"],
+                    ans: 0,
+                    exp: "Lampu mengalirkan arus listrik yang diubah menjadi energi cahaya dan sebagian menjadi panas."
+                },
+                {
+                    q: "Bahan bakar bensin dan makanan yang kita makan menyimpan jenis energi...",
+                    options: ["Energi Listrik", "Energi Kimia", "Energi Nuklir", "Energi Bunyi"],
+                    ans: 1,
+                    exp: "Ikatan ikatan kimia dalam molekul makanan dan BBM menyimpan energi kimia."
+                },
+                {
+                    q: "Perangkat yang mengubah sinar matahari langsung menjadi energi listrik pada bangunan modern DPIB dinamakan...",
+                    options: ["Kipas Angin", "Panel Surya (Solar Cell)", "Turbin Angin", "Generator Diesel"],
+                    ans: 1,
+                    exp: "Panel surya memanfaatkan efek fotovoltaik untuk mengubah radiasi matahari menjadi energi listrik."
+                },
+                {
+                    q: "Berikut ini yang TERMASUK sumber energi terbarukan adalah...",
+                    options: ["Batu Bara", "Minyak Bumi", "Gas Alam", "Energi Angin & Air"],
+                    ans: 3,
+                    exp: "Angin dan air dapat diperbarui secara alami tanpa khawatir habis."
+                },
+                {
+                    q: "Kompor listrik/induksi pada dapur Kuliner mengubah energi listrik menjadi energi...",
+                    options: ["Panas (Kalor)", "Cahaya", "Bunyi", "Kimia"],
+                    ans: 0,
+                    exp: "Elemen pemanas kompor listrik mengonversi energi listrik menjadi energi panas untuk memasak."
+                },
+                {
+                    q: "Satuan Internasional (SI) untuk mengukur Besaran Massa adalah...",
+                    options: ["Meter", "Kilogram (kg)", "Sekon", "Ampere"],
+                    ans: 1,
+                    exp: "Satuan SI untuk massa adalah Kilogram."
+                },
+                {
+                    q: "Pada blender yang berputar, energi listrik diubah menjadi energi...",
+                    options: ["Gerak (Kinetik)", "Kimia", "Nuklir", "Potensial Gravitasi"],
+                    ans: 0,
+                    exp: "Motor blender mengubah daya listrik menjadi putaran gerak pisau."
+                },
+                {
+                    q: "Energi yang dihasilkan dari pemanfaatan panas bumi disebut...",
+                    options: ["Biomassa", "Geothermal", "PLTA", "Solar Thermal"],
+                    ans: 1,
+                    exp: "Panas bumi disebut sebagai energi Geothermal."
+                }
+            ]
+        };
+
+        function selectQuizModule(modNum) {
+            appState.quiz.module = modNum;
+            appState.quiz.currentIndex = 0;
+            appState.quiz.score = 0;
+            
+            const btn1 = document.getElementById('quiz-mod1-btn');
+            const btn2 = document.getElementById('quiz-mod2-btn');
+            if (modNum === 1) {
+                btn1.className = "px-4 py-2 rounded-xl text-xs font-bold bg-brand-600 text-white shadow-sm";
+                btn2.className = "px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200";
+            } else {
+                btn2.className = "px-4 py-2 rounded-xl text-xs font-bold bg-amber-600 text-white shadow-sm";
+                btn1.className = "px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200";
+            }
+
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('quiz-result-card').classList.add('hidden');
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            const questions = appState.quiz.module === 1 ? quizData.m1 : quizData.m2;
+            const current = questions[appState.quiz.currentIndex];
+
+            document.getElementById('quiz-progress-lbl').innerText = `Soal ${appState.quiz.currentIndex + 1} dari ${questions.length}`;
+            document.getElementById('quiz-score-lbl').innerText = `Skor: ${appState.quiz.score}`;
+            document.getElementById('quiz-badge').innerText = appState.quiz.module === 1 ? "Modul 1: Zat" : "Modul 2: Energi";
+            document.getElementById('quiz-question-text').innerText = current.q;
+
+            const grid = document.getElementById('quiz-options-grid');
+            grid.innerHTML = "";
+
+            current.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-3.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:bg-brand-50/50 transition font-medium text-xs sm:text-sm text-slate-700 flex items-center gap-2";
+                btn.onclick = () => checkQuizAnswer(idx);
+                btn.innerHTML = `<span class="w-6 h-6 rounded-full bg-slate-100 font-bold text-xs flex items-center justify-center text-slate-600">${String.fromCharCode(65+idx)}</span> <span>${opt}</span>`;
+                grid.appendChild(btn);
+            });
+
+            document.getElementById('quiz-feedback-box').classList.add('hidden');
+            document.getElementById('quiz-next-btn').classList.add('hidden');
+        }
+
+        function checkQuizAnswer(chosenIdx) {
+            const questions = appState.quiz.module === 1 ? quizData.m1 : quizData.m2;
+            const current = questions[appState.quiz.currentIndex];
+            const fbBox = document.getElementById('quiz-feedback-box');
+            
+            // Disable option buttons
+            const btns = document.querySelectorAll('#quiz-options-grid button');
+            btns.forEach(b => b.disabled = true);
+
+            if (chosenIdx === current.ans) {
+                appState.quiz.score += 10;
+                fbBox.className = "p-4 rounded-xl border text-xs sm:text-sm space-y-1 bg-emerald-50 text-emerald-900 border-emerald-200 block";
+                fbBox.innerHTML = `<strong>Benar! 🎉</strong> <p>${current.exp}</p>`;
+            } else {
+                fbBox.className = "p-4 rounded-xl border text-xs sm:text-sm space-y-1 bg-rose-50 text-rose-900 border-rose-200 block";
+                fbBox.innerHTML = `<strong>Belum Tepat.</strong> Jawaban benar adalah: <em>${current.options[current.ans]}</em>. <p class="mt-1">${current.exp}</p>`;
+            }
+
+            document.getElementById('quiz-score-lbl').innerText = `Skor: ${appState.quiz.score}`;
+            document.getElementById('quiz-next-btn').classList.remove('hidden');
+        }
+
+        function nextQuizQuestion() {
+            const questions = appState.quiz.module === 1 ? quizData.m1 : quizData.m2;
+            appState.quiz.currentIndex++;
+            if (appState.quiz.currentIndex < questions.length) {
+                renderQuizQuestion();
+            } else {
+                // Quiz Finish
+                document.getElementById('quiz-container').classList.add('hidden');
+                document.getElementById('quiz-result-card').classList.remove('hidden');
+                document.getElementById('quiz-final-score').innerText = appState.quiz.score;
+                markActivityComplete(`quiz_mod${appState.quiz.module}`);
+            }
+        }
+
+        function restartCurrentQuiz() {
+            selectQuizModule(appState.quiz.module);
+        }
+
+        // EVALUASI AKHIR ENGINE
+        function initEvalPGForm() {
+            const container = document.getElementById('eval-pg-list');
+            if (!container) return;
+            container.innerHTML = "";
+
+            const evalQuestions = [
+                ...quizData.m1.slice(0, 8),
+                ...quizData.m2.slice(0, 7)
+            ];
+
+            evalQuestions.forEach((item, idx) => {
+                const div = document.createElement('div');
+                div.className = "pt-4 first:pt-0 space-y-2 text-xs sm:text-sm";
+                div.innerHTML = `
+                    <p class="font-bold text-slate-800">${idx+1}. ${item.q}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pl-2">
+                        ${item.options.map((opt, oIdx) => `
+                            <label class="flex items-center space-x-2 text-slate-700 cursor-pointer">
+                                <input type="radio" name="eval_pg_${idx}" value="${oIdx}" class="text-brand-600 focus:ring-brand-500" required>
+                                <span>${String.fromCharCode(65+oIdx)}. ${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function submitEvalPG(e) {
+            e.preventDefault();
+            const evalQuestions = [
+                ...quizData.m1.slice(0, 8),
+                ...quizData.m2.slice(0, 7)
+            ];
+            let score = 0;
+            evalQuestions.forEach((item, idx) => {
+                const sel = document.querySelector(`input[name="eval_pg_${idx}"]:checked`);
+                if (sel && parseInt(sel.value) === item.ans) {
+                    score += 1;
+                }
+            });
+            const finalScore = Math.round((score / evalQuestions.length) * 100);
+            document.getElementById('eval-pg-score-display').innerText = `Skor Pilihan Ganda Anda: ${finalScore} / 100 (${score} Benar dari ${evalQuestions.length} Soal)`;
+            markActivityComplete('evaluasi_pg');
+        }
+
+        function initEvalUraian() {
+            const container = document.getElementById('eval-uraian-list');
+            if (!container) return;
+            container.innerHTML = `
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2 text-xs sm:text-sm">
+                    <h4 class="font-bold text-slate-800">1. Jelaskan perbedaan mendasar antara perubahan fisika, kimia, dan biologi beserta masing-masing 1 contoh penerapan pada kejuruan DPIB atau Kuliner!</h4>
+                    <p class="text-slate-500 italic">Kriteria Jawaban: Menyebutkan tidak terbentuk zat baru pada fisika, terbentuk zat baru pada kimia, dan keterlibatan mikroorganisme pada biologi.</p>
+                </div>
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2 text-xs sm:text-sm">
+                    <h4 class="font-bold text-slate-800">2. Mengapa beton bangunan tergolong campuran heterogen? Berikan analisis konsep zatnya!</h4>
+                    <p class="text-slate-500 italic">Kriteria Jawaban: Terdiri dari semen, air, pasir, kerikil yang komponen fisiknya masih dapat dibedakan dan tidak menyatu menjadi satu fase homogen.</p>
+                </div>
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2 text-xs sm:text-sm">
+                    <h4 class="font-bold text-slate-800">3. Uraikan transformasi energi yang terjadi pada alat masak oven listrik di dapur kuliner!</h4>
+                    <p class="text-slate-500 italic">Kriteria Jawaban: Energi Listrik diubah menjadi Energi Panas (Kalor) melalui elemen pemanas resistor.</p>
+                </div>
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2 text-xs sm:text-sm">
+                    <h4 class="font-bold text-slate-800">4. Jelaskan keuntungan penggunaan panel surya pada rancangan bangunan ramah lingkungan (DPIB)!</h4>
+                    <p class="text-slate-500 italic">Kriteria Jawaban: Sumber energi terbarukan, mengurangi ketergantungan listrik fosil, bebas emisi karbon.</p>
+                </div>
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2 text-xs sm:text-sm">
+                    <h4 class="font-bold text-slate-800">5. Bagaimana cara mengatasi kesalahan variabel dalam penyelidikan ilmiah perkaratan besi?</h4>
+                    <p class="text-slate-500 italic">Kriteria Jawaban: Memastikan ukuran besi, kelembaban, wadah, dan suhu dijaga konstan sebagai variabel kontrol.</p>
+                </div>
+            `;
+        }
+
+        function switchEvalTab(tab) {
+            const pgSection = document.getElementById('eval-section-pg');
+            const uraianSection = document.getElementById('eval-section-uraian');
+            const pgTabBtn = document.getElementById('eval-tab-pg');
+            const uraianTabBtn = document.getElementById('eval-tab-uraian');
+
+            if (tab === 'pg') {
+                pgSection.classList.remove('hidden');
+                uraianSection.classList.add('hidden');
+                pgTabBtn.className = "pb-3 text-sm font-bold border-b-2 border-brand-600 text-brand-600";
+                uraianTabBtn.className = "pb-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800";
+            } else {
+                uraianSection.classList.remove('hidden');
+                pgSection.classList.add('hidden');
+                uraianTabBtn.className = "pb-3 text-sm font-bold border-b-2 border-amber-600 text-amber-600";
+                pgTabBtn.className = "pb-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800";
+            }
+        }
+
+        // TANTANGAN 5 MENIT ENGINE
+        function start5MinChallenge() {
+            document.getElementById('tantangan-start-view').classList.add('hidden');
+            document.getElementById('tantangan-play-view').classList.remove('hidden');
+            
+            const container = document.getElementById('tantangan-questions-container');
+            container.innerHTML = `
+                <div class="p-3 bg-slate-50 rounded-xl space-y-1 text-xs sm:text-sm">
+                    <p class="font-bold">1. Air Garam termasuk Senyawa atau Campuran?</p>
+                    <select id="t1" class="w-full p-2 border rounded font-medium"><option value="">-- Pilih --</option><option value="senyawa">Senyawa</option><option value="campuran">Campuran Homogen</option></select>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-xl space-y-1 text-xs sm:text-sm">
+                    <p class="font-bold">2. Es mencair termasuk perubahan apa?</p>
+                    <select id="t2" class="w-full p-2 border rounded font-medium"><option value="">-- Pilih --</option><option value="fisika">Fisika</option><option value="kimia">Kimia</option></select>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-xl space-y-1 text-xs sm:text-sm">
+                    <p class="font-bold">3. Blender berputar mengubah energi listrik menjadi?</p>
+                    <select id="t3" class="w-full p-2 border rounded font-medium"><option value="">-- Pilih --</option><option value="gerak">Gerak (Kinetik)</option><option value="kimia">Kimia</option></select>
+                </div>
+            `;
+
+            appState.challengeSeconds = 300;
+            if (appState.challengeTimer) clearInterval(appState.challengeTimer);
+            
+            appState.challengeTimer = setInterval(() => {
+                appState.challengeSeconds--;
+                const m = Math.floor(appState.challengeSeconds / 60);
+                const s = appState.challengeSeconds % 60;
+                document.getElementById('timer-display').innerText = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+                
+                if (appState.challengeSeconds <= 0) {
+                    clearInterval(appState.challengeTimer);
+                    finish5MinChallenge();
+                }
+            }, 1000);
+        }
+
+        function finish5MinChallenge() {
+            if (appState.challengeTimer) clearInterval(appState.challengeTimer);
+            const t1 = document.getElementById('t1')?.value;
+            const t2 = document.getElementById('t2')?.value;
+            const t3 = document.getElementById('t3')?.value;
+
+            let correct = 0;
+            if (t1 === 'campuran') correct++;
+            if (t2 === 'fisika') correct++;
+            if (t3 === 'gerak') correct++;
+
+            alert(`Tantangan Selesai! Anda berhasil menjawab ${correct} dari 3 soal dengan tepat.`);
+            markActivityComplete('tantangan');
+            showPage('beranda');
+        }
+
+        // REFLEKSI FORM
+        function saveRefleksi(e) {
+            e.preventDefault();
+            alert("Refleksi pembelajaran Anda berhasil disimpan! Terima kasih telah mengevaluasi pemahaman Anda.");
+            markActivityComplete('refleksi');
+            showPage('beranda');
+        }
+    </script>
+</body>
+</html>
